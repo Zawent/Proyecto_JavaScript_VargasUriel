@@ -1,0 +1,7 @@
+@import url('./variables.css');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+

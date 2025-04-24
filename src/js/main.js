@@ -60,7 +60,6 @@ async function llenarSelect(id, endpoint) {
     });
 }
 
-
 document.getElementById('btnCrearPersonaje').addEventListener('click', async () => {
     document.getElementById('modal').classList.remove('hidden');
     await llenarSelect('selectRaza', 'races');
@@ -138,13 +137,9 @@ document.getElementById('elegirStats').addEventListener('click', () => {
     }
 });
 
-
 document.getElementById('reTirar').addEventListener('click', () => {
     tirarDados();
 });
-
-
-
 
 document.getElementById('guardarPersonaje').addEventListener('click', () => {
     const nombre = document.getElementById('nombrePersonaje').value.trim();
@@ -208,17 +203,33 @@ function renderizarPersonajes() {
     });
 }
 
-
-
 document.getElementById('btnCrearPersonaje').addEventListener('click', () => {
     document.getElementById('modal').classList.remove('hidden');
     document.body.classList.add('no-scroll');
 });
 
 document.getElementById('cerrarModal').addEventListener('click', () => {
+    const resumen = document.getElementById('abilityScoreResumen');
+    if (resumen) {
+        resumen.remove();
+    }
+
+    habilidadActualIndex = 0;
+    intentosRestantes = 3;
+    resultadosTemporales = [];
+    abilityScoresFinales = {};
+    document.getElementById('tirarDados').disabled = false;
+    document.getElementById('resultadosDados').innerHTML = '';
+    document.getElementById('botonesEleccion').classList.add('hidden');
+    document.getElementById('abilityScoreSection').dataset.stats = '';
+    
+    document.getElementById('abilityScoreSection').style.display = 'block';
+
     document.getElementById('modal').classList.add('hidden');
     document.body.classList.remove('no-scroll');
 });
+
+
 
 function cerrarModalYResetear() {
     document.getElementById('modal').classList.add('hidden');
@@ -240,7 +251,15 @@ function cerrarModalYResetear() {
 
     skinIndex = 1;
     actualizarSkin();
+
+    const resumen = document.getElementById('abilityScoreResumen');
+    if (resumen) {
+        resumen.remove();
+    }
+
+    document.getElementById('abilityScoreSection').style.display = 'block';
 }
+
 
 
 function eliminarPersonaje(index) {
@@ -249,8 +268,6 @@ function eliminarPersonaje(index) {
     localStorage.setItem('personajes', JSON.stringify(personajes));
     renderizarPersonajes();
 }
-
-
 
 const totalSkins = 10;
 let skinIndex = 1;
@@ -272,7 +289,6 @@ prevBtn.addEventListener('click', () => {
     skinIndex = (skinIndex - 2 + totalSkins) % totalSkins + 1;
     actualizarSkin();
 });
-
 
 loadAllData().then(() => {
     renderizarPersonajes();

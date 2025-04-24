@@ -1,12 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear Personaje</title>
+    <link rel="stylesheet" href="../../styles/personaje.css">
 </head>
+
 <body>
+    <div id="personajesContainer" style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;"></div>
+    <button id="btnCrearPersonaje">Crear nuevo personaje</button>
+
+
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Crear personaje</h2>
+
+            <div id="skinCarousel" style="margin-top: 1.5rem; text-align: center;">
+                <h3 style="margin-bottom: 0.5rem;">Escoja su skin</h3>
+                <div style="display: flex; align-items: center; justify-content: center; gap: 1rem;">
+                    <button id="prevSkin" style="font-size: 1.5rem; background: none; border: none; cursor: pointer;">⬅️</button>
+                    <img id="skinPreview" src="../../assets/imgs/Gato1.png" alt="Skin preview" style="width: 150px; height: auto; border: 2px solid #ccc; border-radius: 10px;">
+                    <button id="nextSkin" style="font-size: 1.5rem; background: none; border: none; cursor: pointer;">➡️</button>
+                </div>
+            </div>
+            
+            <label>
+                Nombre:
+                <input type="text" id="nombrePersonaje">
+            </label>
+    
+            <label>
+                Raza:
+                <select id="selectRaza"></select>
+            </label>
+    
+            <label>
+                Clase:
+                <select id="selectClase"></select>
+            </label>
+    
+            <label>
+                Trasfondo:
+                <select id="selectFondo"></select>
+            </label>
+    
+            <label>
+                Alineamiento:
+                <select id="selectAlineamiento"></select>
+            </label>
+    
+            <label>
+                Idioma:
+                <select id="selectIdioma"></select>
+            </label>
+    
+            <div id="abilityScoreSection" style="border: 1px solid #ccc; padding: 1rem; border-radius: 8px; background-color: #f9f9f9; margin-top: 1rem;">
+                <p style="font-weight: bold; font-size: 1.1rem;">Asignación de Habilidades (Ability Scores)</p>
+                
+                <button id="tirarDados" style="padding: 0.5rem 1rem; font-weight: bold; background-color: #4CAF50; color: white; border: none; border-radius: 5px;">Tirar Dados</button>
+            
+                <div id="resultadosDados" style="margin-top: 1rem; font-size: 1rem;"></div>
+            
+                <div id="botonesEleccion" class="hidden" style="margin-top: 1rem;">
+                    <button id="elegirStats" style="padding: 0.4rem 0.8rem; margin-right: 0.5rem; background-color: #2196F3; color: white; border: none; border-radius: 5px;">Elegir esta tirada</button>
+                    <button id="reTirar" style="padding: 0.4rem 0.8rem; background-color: #f44336; color: white; border: none; border-radius: 5px;">Reintentar</button>
+                </div>
+            </div>
+            
+    
+            <button id="guardarPersonaje">Guardar personaje</button>
+            <button id="cerrarModal">Cerrar</button>
+        </div>
+    </div>
+    
 
     <script src="../js/main.js"></script>
 </body>
+
 </html>

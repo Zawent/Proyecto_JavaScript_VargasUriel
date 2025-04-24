@@ -99,9 +99,15 @@ header a:nth-child(3):hover {
     box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
+main {
+    padding: 5svh 10svw;
+    display: flex;
+    flex-direction: column;
+    gap: 4svh;
+}
+
 .sect1{
     display: flex;
-    padding: 5svh 10svw;
     flex-direction: column;
     gap: 5svh;
 }
@@ -158,14 +164,14 @@ header a:nth-child(3):hover {
     border: 2px solid transparent;
     border-radius: 6px;
     transition: all 0.3s ease;
-    background: #e8d3a4; /* color similar al fondo del header */
+    background: #e8d3a4;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     width: 40%;
 }
 
 .botonMas:hover {
-    background: #FFCD00; /* dorado vibrante */
-    border: 2px solid #5D3A00; /* marrón oscuro estilo cuero */
+    background: #FFCD00;
+    border: 2px solid #5D3A00;
     color: #2d1b00;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     transform: scale(1.05);
@@ -198,4 +204,41 @@ header a:nth-child(3):hover {
 .art2 p span strong{
     font-size: 1.6rem;
     color: #db2e2e;
+}
+
+.sect2{
+    padding: 2svw ;
+    border: solid #8B5A2B;
+    background-color: #F5DEB3;
+    border-radius: 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.sect2 h3{
+    font-size: 1.8rem;
+}
+
+.sect2 a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+    padding: 12px 24px;
+    border: 2px solid #7a1c1c;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: #b22222; /* rojo fuerte estilo medieval */
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+    width: 40%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.sect2 a:hover {
+    background: #ffc107; /* dorado vibrante */
+    border: 2px solid #5d3a00; /* borde cuero oscuro */
+    color: #2d1b00; /* marrón muy oscuro para contraste */
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
+    transform: scale(1.08);
 }

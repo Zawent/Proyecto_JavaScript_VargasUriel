@@ -1,0 +1,317 @@
+@import url('./variables.css');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    font-family: "Quintessential-Regular";
+    justify-content: center;
+    text-align: center;
+    background-image: url('../assets/imgs/fondoPage.webp'); 
+    background-size: cover;      
+    background-position: center;  
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-color: #000;   
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: -1; 
+  }
+
+header{
+    padding: 30px 20px;
+    background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #cea979;
+    width: 100%;
+}
+
+header img {
+    width: 9rem;
+    background: none;
+    position: absolute;
+    left: 40px;
+    padding: 10px 0px;
+}
+
+.list-head {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+    font-family: "Quintessential-Regular";
+}
+
+.list-head a {
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
+    padding: 8px 16px;
+    border: 2px solid transparent;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    background: #e8d3a4;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.list-head a:hover {
+    background: #FFCD00; 
+    border: 2px solid #5D3A00; 
+    color: #2d1b00;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transform: scale(1.05);
+}
+
+header a:nth-child(3) {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding: 5px 20px;
+    background-color: #FFCD00;
+    height: 40px;
+    justify-content: center;
+    font-family: "Quintessential-Regular";
+    font-weight: bold;
+    border-radius: 5px;
+    border: 2px solid #5D3A00;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+header a:nth-child(3):hover {
+    background-color: #e1b900;
+    color: #2d1b00;
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+main {
+    padding: 5svh 0px;
+}
+
+.btn-crear-personaje {
+    background-color: #b7791f; 
+    color: white;
+    letter-spacing: 0.05em; 
+    padding: 0.5rem 1.25rem; 
+    border-radius: 0.375rem; 
+    border-bottom: 4px solid #78350f; 
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-family: "Quintessential-Regular";
+  }
+  
+  .btn-crear-personaje:hover {
+    background-color: #975a16; 
+  }
+  
+  .select-raza {
+    background-color: #fefcbf;
+    border: 1px solid #ecc94b; 
+    color: #b7791f;
+    padding: 0.5rem 0.75rem; 
+    border-radius: 0.375rem;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06); 
+    font-family: "Quintessential-Regular";
+  }
+  
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 15, 15, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    font-family: "Quintessential-Regular";
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: #f8f1d0;
+    border: 4px solid #5d3a00;
+    border-radius: 12px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80svh; 
+    overflow-y: auto; 
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.7);
+    font-family: "Quintessential-Regular";
+    position: relative;
+    color: #2d1b00;
+}
+
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 20px;
+    background: #e6cfa7;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #5d3a00;
+    text-align: center;
+}
+
+.modal-content label {
+    display: block;
+    margin: 1rem 0 0.5rem;
+}
+
+.modal-content input,
+.modal-content select,
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #5d3a00;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.modal-content button {
+    background: #e8d3a4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: "Quintessential-Regular";
+}
+
+.modal-content button:hover {
+    background: #FFCD00;
+    color: #2d1b00;
+    transform: scale(1.05);
+}
+
+
+/* Cards de personajes */
+
+
+.card-personaje {
+    width: 250px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+}
+
+.card-personaje:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+.card-img {
+    width: 70%;
+    object-fit: cover;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.card-content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+}
+
+.card-content p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.card-content p strong {
+    color: #333;
+}
+
+.card-buttons {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    font-family: "Quintessential-Regular";
+    gap: 0.5rem;
+}
+
+.card-buttons button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: "Quintessential-Regular";
+}
+
+.edit-btn {
+    background-color: #2196F3;
+    color: white;
+    font-family: "Quintessential-Regular";
+}
+
+.delete-btn {
+    background-color: #f44336;
+    color: white;
+    font-family: "Quintessential-Regular";
+}
+
+.card-buttons button:hover {
+    opacity: 0.8;
+    font-family: "Quintessential-Regular";
+}
+
+#personajesContainer {
+    padding: 0px 15svw;
+    width: 100svw;
+    align-items: center;
+    justify-content: center;
+}

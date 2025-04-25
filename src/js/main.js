@@ -40,17 +40,24 @@ async function loadAllData() {
     }
 }
 
-async function llenarSelect(id, endpoint) {
+async function llenarSelect(id, endpoint, agregarOpcionTodas = false) {
     const data = await getOrFetchData(endpoint);
     const select = document.getElementById(id);
     select.innerHTML = ''; 
 
-    const placeholder = document.createElement('option');
-    placeholder.textContent = 'Seleccione...';
-    placeholder.disabled = true;
-    placeholder.selected = true;
-    placeholder.value = '';
-    select.appendChild(placeholder);
+    if (agregarOpcionTodas) {
+        const opcionTodas = document.createElement('option');
+        opcionTodas.value = '';
+        opcionTodas.textContent = 'Todas las razas';
+        select.appendChild(opcionTodas);
+    } else {
+        const placeholder = document.createElement('option');
+        placeholder.textContent = 'Seleccione...';
+        placeholder.disabled = true;
+        placeholder.selected = true;
+        placeholder.value = '';
+        select.appendChild(placeholder);
+    }
 
     data.results.forEach(opt => {
         const option = document.createElement('option');
@@ -59,6 +66,10 @@ async function llenarSelect(id, endpoint) {
         select.appendChild(option);
     });
 }
+
+
+llenarSelect('filtroRaza', 'races', true); 
+
 
 document.getElementById('btnCrearPersonaje').addEventListener('click', async () => {
     document.getElementById('modal').classList.remove('hidden');
@@ -100,6 +111,11 @@ function tirarDados() {
 document.getElementById('tirarDados').addEventListener('click', tirarDados);
 
 document.getElementById('elegirStats').addEventListener('click', () => {
+    if (resultadosTemporales.length === 0) {
+        alert("Primero debes lanzar los dados.");
+        return;
+    }
+
     const nombreHabilidad = habilidades[habilidadActualIndex];
     const mejorResultado = Math.max(...resultadosTemporales);
     abilityScoresFinales[nombreHabilidad] = mejorResultado;
@@ -136,6 +152,7 @@ document.getElementById('elegirStats').addEventListener('click', () => {
         document.getElementById('abilityScoreSection').after(resumen);
     }
 });
+
 
 document.getElementById('reTirar').addEventListener('click', () => {
     tirarDados();
@@ -194,7 +211,6 @@ function renderizarPersonajes() {
                     <p><strong>Fondo:</strong> ${p.background}</p>
                 </div>
                 <div class="card-buttons">
-                    <button class="edit-btn" onclick="editarPersonaje(${index})">Editar</button>
                     <button class="delete-btn" onclick="eliminarPersonaje(${index})">Eliminar</button>
                 </div>
             </div>
@@ -202,6 +218,43 @@ function renderizarPersonajes() {
         contenedor.appendChild(card);
     });
 }
+
+function filtrarPorRaza(razaSeleccionada) {
+    const contenedor = document.getElementById('personajesContainer');
+    contenedor.innerHTML = '';
+    const personajes = JSON.parse(localStorage.getItem('personajes')) || [];
+
+    const filtrados = razaSeleccionada
+        ? personajes.filter(p => p.raza === razaSeleccionada)
+        : personajes;
+
+    filtrados.forEach((p, index) => {
+        const card = document.createElement('div');
+        card.className = 'card-personaje';
+        card.innerHTML = `
+            <div class="card-inner">
+                <img src="../../assets/imgs/${p.skin}" alt="Skin" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">${p.nombre}</h3>
+                    <p><strong>Raza:</strong> ${p.raza}</p>
+                    <p><strong>Clase:</strong> ${p.clase}</p>
+                    <p><strong>Fondo:</strong> ${p.background}</p>
+                </div>
+                <div class="card-buttons">
+                    <button class="delete-btn" onclick="eliminarPersonaje(${index})">Eliminar</button>
+                </div>
+            </div>
+        `;
+        contenedor.appendChild(card);
+    });
+}
+
+filtroRaza.addEventListener('change', (e) => {
+    const razaSeleccionada = e.target.value;
+    filtrarPorRaza(razaSeleccionada);
+});
+
+
 
 document.getElementById('btnCrearPersonaje').addEventListener('click', () => {
     document.getElementById('modal').classList.remove('hidden');
@@ -264,10 +317,13 @@ function cerrarModalYResetear() {
 
 function eliminarPersonaje(index) {
     const personajes = JSON.parse(localStorage.getItem('personajes')) || [];
-    personajes.splice(index, 1); 
+    personajes.splice(index, 1);
     localStorage.setItem('personajes', JSON.stringify(personajes));
-    renderizarPersonajes();
+
+    const razaSeleccionada = document.getElementById('filtroRaza').value;
+    filtrarPorRaza(razaSeleccionada);
 }
+
 
 const totalSkins = 10;
 let skinIndex = 1;
